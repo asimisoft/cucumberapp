@@ -1,3 +1,13 @@
+require 'selenium-webdriver'
+
+driver = Selenium::WebDriver.for :firefox
+driver.navigate.to "http://localhost:3000/"
+
+wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+driver.find_element(:id, 'link-test').click
+wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+driver.quit
+
 Given(/^I am on the home page$/) do
   visit root_path
 end
