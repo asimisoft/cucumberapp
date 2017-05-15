@@ -1,13 +1,16 @@
-require 'selenium-webdriver'
+# require 'selenium-webdriver'
 
-driver = Selenium::WebDriver.for :firefox
-driver.navigate.to "http://localhost:3000/"
+# driver = Selenium::WebDriver.for :firefox
+# driver.navigate.to "http://localhost:3000/"
 
-wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
-driver.find_element(:id, 'link-test').click
-wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
-driver.quit
+# wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+# driver.find_element(:id, 'link-test').click
+# wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+# driver.quit
 
+# Below are the working code for cucumber using capybara code
+# comment below code to check cucumber feature
+=begin
 Given(/^I am on the home page$/) do
   visit root_path
 end
@@ -42,3 +45,4 @@ When(/^I click "([^"]*)"$/) do |element|
   # click_button 'Save'
   # expect(page).to have_content "This is the home page List of the Tests"
 end
+=end
