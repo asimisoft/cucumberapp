@@ -94,26 +94,18 @@ end
 # watir webdriver
 # **********************************************************
 require 'watir-webdriver'
-
 browser = Watir::Browser.new :firefox
-# browser.goto "http://google.com"
-# browser.text_field(name: 'q').set("WebDriver rocks!")
-# browser.button(name: 'btnG').click
-# puts browser.url
-# browser.close
 
 Given(/^I am on home page$/) do
   visit root_path
   expect(page).to have_current_path('/')
   page.should have_selector("h1"), content: "This is the home page"
-  # page.should have_link ""
   browser.goto "http://localhost:3000/"
   p "*******1********* #{browser.url}"
 end
 
 When(/^Click on List of the tests$/) do
   p "*******2********* #{browser.url}"
-  # driver.find_element(:id, 'link-test').click
   browser.a(id: 'link-test').click
 end
 
