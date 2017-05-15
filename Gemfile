@@ -50,6 +50,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
+  gem 'capybara'
 end
 
 group :development do

@@ -1,3 +1,10 @@
-Given(/^I am on the test page$/) do
-  visit tests_path
-end
+
+
+
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Selenium::Driver.new(
+#     app,
+#     browser: :firefox,
+#     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.firefox(marionette: false)
+#   )
+# end

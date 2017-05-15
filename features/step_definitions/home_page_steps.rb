@@ -14,3 +14,21 @@ end
 Then(/^I should see "([^"]*)" in the link$/) do |text|
   page.should have_link text
 end
+
+Given(/^I am on the test page$/) do
+  visit tests_path
+end
+
+Given(/^I am on "([^"]*)"$/) do |arg1|
+  visit new_test_path
+end
+
+When(/^I fill "([^"]*)" with "([^"]*)"$/) do |element, text|
+  fill_in element, with: text, visible: false
+end
+
+When(/^I click "([^"]*)"$/) do |element|
+  click_on element
+  # click_button 'Save'
+  # expect(page).to have_content "This is the home page List of the Tests"
+end

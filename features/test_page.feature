@@ -5,4 +5,4 @@ Feature: Viewer visit the test page
 
   Scenario: View test page
     Given I am on the test page
-    Then I should see "List of information"
+    Then I should see "List of information" in the selector "h1"
