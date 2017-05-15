@@ -10,7 +10,7 @@
 
 # Below are the working code for cucumber using capybara code
 # uncomment below code to check cucumber feature
-#=begin
+=begin
 Given(/^I am on the home page$/) do
   visit root_path
 end
@@ -45,4 +45,84 @@ When(/^I click "([^"]*)"$/) do |element|
   # click_button 'Save'
   # expect(page).to have_content "This is the home page List of the Tests"
 end
-#=end
+=end
+
+# **********************************************************
+# selenium webdriver
+# **********************************************************
+# automation feature spec implementing using selenium-webdriver
+=begin
+require 'selenium-webdriver'
+driver = Selenium::WebDriver.for :firefox
+
+Given(/^I am on home page$/) do
+  visit root_path
+  expect(page).to have_current_path('/')
+  page.should have_selector("h1"), content: "This is the home page"
+  # page.should have_link ""
+  driver.navigate.to "http://localhost:3000/"
+  p "*******1*********"
+end
+
+When(/^Click on List of the tests$/) do
+  p "*******2*********"
+  driver.find_element(:id, 'link-test').click
+  # visit tests_path
+  # expect(page).to have_current_path(tests_path)
+
+end
+
+Then(/^It should open the tests listing page$/) do
+  begin
+          actual = URI.parse(current_url).path
+          p "******3*********" + actual
+          expected = tests_path
+          p "******4*********" + expected
+          wait_until { actual == expected }
+          expect(page).to have_current_path(tests_path)
+  ensure
+    driver.quit
+  end
+end
+
+def wait_until
+  Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+end
+=end
+
+# **********************************************************
+# watir webdriver
+# **********************************************************
+require 'watir-webdriver'
+
+browser = Watir::Browser.new :firefox
+# browser.goto "http://google.com"
+# browser.text_field(name: 'q').set("WebDriver rocks!")
+# browser.button(name: 'btnG').click
+# puts browser.url
+# browser.close
+
+Given(/^I am on home page$/) do
+  visit root_path
+  expect(page).to have_current_path('/')
+  page.should have_selector("h1"), content: "This is the home page"
+  # page.should have_link ""
+  browser.goto "http://localhost:3000/"
+  p "*******1********* #{browser.url}"
+end
+
+When(/^Click on List of the tests$/) do
+  p "*******2********* #{browser.url}"
+  # driver.find_element(:id, 'link-test').click
+  browser.a(id: 'link-test').click
+end
+
+Then(/^It should open the tests listing page$/) do
+  begin
+    actual = URI.parse(browser.url).path
+    expected = tests_path
+    expect(actual==expected).to be_truthy
+  ensure
+    browser.close
+  end
+end

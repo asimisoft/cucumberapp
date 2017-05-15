@@ -51,6 +51,7 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'watir-webdriver', '~> 0.9.9'
 end
 
 group :development do
